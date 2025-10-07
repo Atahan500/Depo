@@ -1,15 +1,20 @@
 meme_dictonary = {
-            "CRINGE": "Garip ya da utandırıcı bir şey",
-            "LOL": "Komik bir şeye verilen cevap",
-            }
+    "CRINGE": "Garip ya da utandırıcı bir şey",
+    "LOL": "Komik bir şeye verilen cevap",
+    "ROFL": "Acemi, tecrübesiz kişi",
+    "SHEESH": "Good Game, oyunun güzel geçtiğini belirtmek",
+    "CREEPY": "Şüpheli davranış, Among Us oyununda kullanılan bir terim"
+}
+print("Merhaba ben sözlük  ")
 
 
-word = input("Anlamadığınız bir kelime yazın hepsi büyük harf olacak")
-
-if word in meme_dictonary.keys():
-    meaning = meme_dictonary[word]
-    print('Anlamı:',meaning)
-else:
-    print("Malesef  bu  sözlükte kelime yok.")
+for i in range(5):
+    word = input("Anlamadığın bir kelime yaz kelimeyi yazın (hepsi BÜYÜK HARF olacak): ".format(i+1))
+    word = word.strip().upper()   # girilen kelimeyi büyük harfe çeviriyoruz
+    
+    if word in meme_dictonary:
+        print("Anlamı:", meme_dictonary[word])
+    else:
+        print("Malesef bu sözlükte kelime yok.")
 
 
