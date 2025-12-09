@@ -1,0 +1,44 @@
+const { SlashCommandBuilder } = require('discord.js');
+
+module.exports = {
+    data: new SlashCommandBuilder()
+        .setName('meme')
+        .setDescription('Rastgele rarity sistemli meme gönderir!'),
+
+    async execute(interaction) {
+
+        // Meme listesi
+        const memes = [
+            { url: "https://i.imgflip.com/30zz5g.jpg", rarity: "common" },
+            { url: "https://i.imgflip.com/4/1bij.jpg", rarity: "common" },
+            { url: "https://i.imgflip.com/5w3.jpg", rarity: "rare" },
+            { url: "https://i.imgflip.com/jr4.jpg", rarity: "rare" },
+            { url: "https://i.imgflip.com/legendary.jpg", rarity: "legendary" }
+        ];
+
+        // Nadire göre seçim şansı
+        const rarityWeights = {
+            common: 60,      // %60
+            rare: 30,        // %30
+            legendary: 10    // %10
+        };
+
+        function chooseMeme() {
+            const weightedList = [];
+
+            memes.forEach(meme => {
+                for (let i = 0; i < rarityWeights[meme.rarity]; i++) {
+                    weightedList.push(meme);
+                }
+            });
+
+            return weightedList[Math.floor(Math.random() * weightedList.length)];
+        }
+
+        const selected = chooseMeme();
+
+        await interaction.reply({
+            content: `🎯 **${selected.rarity.toUpperCase()}** meme geliyor:\n${selected.url}`
+        });
+    }
+};
